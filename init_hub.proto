@@ -1,0 +1,30 @@
+syntax = "proto3";
+import public "global_options.proto";
+
+option go_package="./;proto";
+option java_package = "org.liquibase.grpc.proto";
+option java_multiple_files = true;
+option java_outer_classname = "InitHubProto";
+
+package liquibase;
+
+service InitHubService {
+  rpc execute(Init.HubRequest) returns (Response) {}
+}
+
+/* Command used to complete Hub and Liquibase setup. Requires a "token" available from hub.liquibase.com with a valid user account. Updates the specified liquibase.properties with a valid Hub API Key, and registers the specified changelog file wih Hub, enabling secure monitoring and sharing of local Liquibase activity within an organization. */
+message Init {
+  message HubRequest {
+    optional string changelog_file = 1; // Relative or fully qualified path to the changelog file
+    optional string password = 2; // Password to use to connect to the database
+    optional string project_dir = 3; // An optional parameter used to specify the directory containing files (existing or to be auto-created) to be used with Liquibase
+    string token = 4; // *required* A required one-time-use code to connect your local Liquibase usage to your existing Liquibase Hub user account. Token is available to registered Hub users at https://hub.liquibase.com.
+    optional string url = 5; // The JDBC database connection URL
+    optional string username = 6; // Username to use to connect to the database
+    liquibase.GlobalOptions global_options = 7;
+  }
+}
+
+message Response {
+  string message = 1;
+}
