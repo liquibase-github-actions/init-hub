@@ -6,7 +6,7 @@ Command used to complete Hub and Liquibase setup. Requires a "token" available f
 ```yaml
 steps:
 - uses: actions/checkout@v3
-- uses: liquibase-github-actions/init-hub@v4.17.1
+- uses: liquibase-github-actions/init-hub@v4.17.2
   with:
     # A required one-time-use code to connect your local Liquibase usage to your existing Liquibase Hub user account. Token is available to registered Hub users at https://hub.liquibase.com.
     # string
@@ -50,7 +50,7 @@ The liquibase init hub action accepts all valid liquibase global options as opti
 ```yaml
 steps:
   - uses: actions/checkout@v3
-  - uses: liquibase-github-actions/init-hub@v4.17.1
+  - uses: liquibase-github-actions/init-hub@v4.17.2
     with:
       token: ""
       headless: true
