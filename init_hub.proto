@@ -6,7 +6,7 @@ option java_package = "org.liquibase.grpc.proto";
 option java_multiple_files = true;
 option java_outer_classname = "InitHubProto";
 
-package liquibase;
+package liquibase.pro;
 
 service InitHubService {
   rpc execute(Init.HubRequest) returns (Response) {}
